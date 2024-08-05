@@ -8,208 +8,363 @@ public class App {
     // Diseñe un algoritmo para saludar al usuario: Hola usuario. El nombre del usuario es ingresado por teclado
     public static String saludarUsuario(String nombre) {
         try {
-            // Lógica interna
+            return "Hola " + nombre;
         } catch (Exception e) {
             return "Error: " + e.getMessage();
         }
-        return "";
     }
 
     // Diseñe un algoritmo que lea por teclado una velocidad en Km/seg y la convierta a metros/seg y a metros/hora
     // retorne el valor en formato string (metrosPorSeg + "|" + metrosPorHora)
     public static String convertirVelocidad(double kmPorSeg) {
         try {
-            // Lógica interna
+            
+            double metrosPorSeg = 0;
+            double metrosPorHora = 0;
+
+            metrosPorSeg = kmPorSeg * 1000;
+            metrosPorHora = kmPorSeg * 3600 * 1000;
+            return (int)metrosPorSeg + "|" + (int)metrosPorHora;
+
         } catch (Exception e) {
             return "0|0";
         }
-        return "";
     }
 
     // Solicitar al usuario ingresar una cantidad expresada en cc (centímetros cúbicos) y devolver su cantidad en litros
     public static int convertirCcALitros(double cc) {
         try {
-            // Lógica interna
+            
+            double litros = 0;
+
+            litros = cc / 1000;
+            return (int) litros;
+
         } catch (Exception e) {
             return -1;
         }
-        return 0;
     }
 
     // Solicitar al usuario ingresar una cantidad en dólares y convertirla a pesos según la TRM del día
     public static int convertirDolaresAPesos(double dolares, double trm) {
         try {
             // Lógica interna
+
+            double pesos = 0;
+
+            pesos = dolares * trm;
+            return (int) pesos;            
+            
         } catch (Exception e) {
             return -1;
         }
-        return 0;
+
     }
 
     // Solicitar al usuario ingresar la temperatura en grados centígrados y convertirla en grados Fahrenheit (averiguar la fórmula) F = 32 + ( 9 * C / 5)
     public static int convertirCelsiusAFahrenheit(double celsius) {
         try {
-            // Lógica interna
+            
+            double gradosFahrenheit = 0;
+
+            gradosFahrenheit = 32 + (9 * celsius / 5);
+            return (int)gradosFahrenheit; 
+
         } catch (Exception e) {
             return -1;
         }
-        return 0;
     }
 
     // Solicitar al usuario ingresar Nro de Días nro de horas nro de minutos y nro segundos y convertir todo a segundos.
     public static int convertirATotalSegundos(int dias, int horas, int minutos, int segundos) {
         try {
-            // Lógica interna
+            
+            double totalSegundos = 0;
+
+            totalSegundos = (dias * 86400) + (horas * 3600) + (minutos * 60) + (segundos * 1);
+            return (int) totalSegundos;
+
         } catch (Exception e) {
             return -1;
         }
-        return 0;
     }
 
     // Un usuario tiene un sistema de báscula para pesar camiones, dado el peso de un camión debe sacar el peso neto de la carga en kilos y toneladas
     // retorne el valor en formato string (pesoEnKg + "|" + pesoEnToneladas)
     public static String calcularPesoNeto(double peso) {
         try {
-            // Lógica interna
+            
+            double pesoEnKg = 0;
+            double pesoEnToneladas = 0;
+
+            pesoEnKg = peso / 1000;
+            pesoEnToneladas = peso / 1000000;
+            return (int)pesoEnKg + "|" + (int)pesoEnToneladas;
+            
         } catch (Exception e) {
             return "0|0";
         }
-        return "";
     }
 
     // Diseñe un algoritmo que calcule el tiempo necesario para alcanzar un destino dado por el usuario quien además ingresará la velocidad promedio en kilómetros/hora y la distancia en kilómetros
     public static int calcularTiempoViaje(double distancia, double velocidadKilometros, double velocidadHora) {
         try {
-            // Lógica interna
+            
+            if (distancia == 0 || velocidadKilometros == 0 || velocidadHora == 0) {
+                return -1;
+            }
+
+            double kilometrosxHora = velocidadKilometros / velocidadHora;
+            double tiempoNecesario = 0;
+
+            tiempoNecesario = distancia / kilometrosxHora;
+
+            return (int)tiempoNecesario;
+
         } catch (Exception e) {
             return -1;
         }
-        return 0;
     }
 
     // Un avión necesita cargar combustible para cubrir sus rutas programadas en el día. Cada 0.2 toneladas de combustible puede recorrer 60.8 Km en velocidad de crucero. En el despegue el avión consume 1.2 toneladas de combustible y en el aterrizaje consume 0.4 toneladas. El piloto desea un algoritmo que ingresando 4 rutas y el kilometraje de cada ruta obtenga la cantidad de combustible que debe tanquear en el avión.
     public static int calcularCombustible(double ruta1, double ruta2, double ruta3, double ruta4) {
         try {
-            // Lógica interna
+            
+            double despegue = 1.2;
+            double aterrizaje = 0.4;
+            double toneladasPorKilometro = 0.2 / 60.8;
+            double cantidadCombustibleNecesario = 0;
+            double toneladasRuta1 = 0;
+            double toneladasRuta2 = 0;
+            double toneladasRuta3 = 0;
+            double toneladasRuta4 = 0;
+
+            toneladasRuta1 = despegue + aterrizaje + (ruta1 * toneladasPorKilometro);
+            toneladasRuta2 = despegue + aterrizaje + (ruta2 * toneladasPorKilometro);
+            toneladasRuta3 = despegue + aterrizaje + (ruta3 * toneladasPorKilometro);
+            toneladasRuta4 = despegue + aterrizaje + (ruta4 * toneladasPorKilometro);
+
+            cantidadCombustibleNecesario = toneladasRuta1 + toneladasRuta2 + toneladasRuta3 + toneladasRuta4;
+            return (int)cantidadCombustibleNecesario;
+            
         } catch (Exception e) {
             return -1;
         }
-        return 0;
     }
 
     // Diseñar un algoritmo que calcule el peso neto en la luna de un peso terrestre ingresado por teclado. La gravedad de la Luna es de alrededor del 17% más que la de la tierra
     public static int calcularPesoLunar(double pesoTierra) {
         try {
-            // Lógica interna
+            
+            double pesoNetoLuna = 0;
+
+            pesoNetoLuna = pesoTierra * 1.17;
+
+            return (int) pesoNetoLuna;
+
         } catch (Exception e) {
             return -1;
         }
-        return 0;
     }
 
     // Diseñar un algoritmo que calcule el saldo que debe haber en una taquilla de un banco. El cajero deberá ingresar la base el total de recaudos y el total de retiros
     public static int calcularSaldoTaquilla(double base, double ingresos, double retiros) {
         try {
-            // Lógica interna
+            
+            double saldoTaquilla = 0;
+            
+            saldoTaquilla = (base + ingresos) - retiros;
+            return (int)saldoTaquilla;
+            
         } catch (Exception e) {
             return -1;
         }
-        return 0;
     }
 
-    // Diseñe un algoritmo para calcular la propina en un restaurante(10%) el impuesto al consumo (8%) y el valor final que deberá pagar ingresando el valor de la comida.
-    // retorne el valor en formato string (propina + "|" + impuesto + "|" + total)
+    // Diseñe un algoritmo para calcular la propina en un restaurante(10%) el impuesto al consumo (8%) y el valor final que deberá pagar ingresando el valor de la comida. retorne el valor en formato string (propina + "|" + impuesto + "|" + total)
     public static String calcularCuentaRestaurante(double costoComida) {
         try {
-            // Lógica interna
+            
+            double propina = 0;
+            double impuesto = 0;
+            double total = 0;
+
+            propina = costoComida * 0.1;
+            impuesto = costoComida * 0.08;
+            total = propina + impuesto + costoComida;
+
+            return (int)propina + "|" + (int)impuesto + "|" + (int)total;
+
         } catch (Exception e) {
             return -1 + "|" + -1 + "|" + -1;
         }
-        return "";
     }
 
     // Diseñar un algoritmo que obtenga los puntos finales de un equipo de fútbol (puntuación según lineamientos de Fifa) a partir de los datos ingresados por teclado: Número de partidos ganados número de partidos perdidos número de partidos empatados.
     public static int calcularPuntosFutbol(int ganados, int perdidos, int empatados) {
         try {
-            // Lógica interna
+            
+            double puntossiGana = 3;
+            double puntossiPierde = 0;
+            double puntosEmpata = 1;
+            double puntosFinales = 0;
+
+            puntosFinales = (ganados * puntossiGana) + (empatados * puntosEmpata);
+
+            return (int)puntosFinales;
+    
         } catch (Exception e) {
             return -1;
         }
-        return 0;
     }
 
     // Elaborar un algoritmo que dadas todas las 5 notas y los 5 porcentajes para una materia calcule la nota final.
     public static int calcularNotaFinal(double nota1, double nota2, double nota3, double nota4, double nota5,
                                         double porcentaje1, double porcentaje2, double porcentaje3, double porcentaje4, double porcentaje5) {
         try {
-            // Lógica interna
+            
+            if (porcentaje1 == 0 || porcentaje2 ==0 || porcentaje3 == 0 || porcentaje4 == 0 || porcentaje5 == 0){
+                return -1;
+            }
+
+            double notaFinal = 0;
+
+            notaFinal = (nota1 * porcentaje1) + (nota2 * porcentaje2) + (nota3 * porcentaje3) + (nota4 * porcentaje4) + (nota5 * porcentaje5);
+            return (int)notaFinal;
+
         } catch (Exception e) {
             return -1;
         }
-        return 0;
     }
 
     // Elaborar un algoritmo que dados los 5 porcentajes de una materia y las 4 primeras notas calcule cuánto tiene que sacar para ganar si el puntaje mínimo es 3.
     public static int calcularNotaNecesaria(double porcentaje1, double porcentaje2, double porcentaje3, double porcentaje4, double porcentaje5, double nota1, double nota2, double nota3, double nota4) {
         try {
-            // Lógica interna
+
+            if (porcentaje1 == 0 || porcentaje2 ==0 || porcentaje3 == 0 || porcentaje4 == 0 || porcentaje5 == 0){
+                return -1;
+            }
+
+            double notaFinal1 = 0;
+            double notaFinal2 = 0;
+            double notaFinal3 = 0;
+            double notaFinal4 = 0;
+            double notaFinal5 = 0;
+
+            notaFinal1 = (nota1 * porcentaje1);
+            notaFinal2 = (nota2 * porcentaje2);
+            notaFinal3 = (nota3 * porcentaje3);
+            notaFinal4 = (nota4 * porcentaje4);
+
+            notaFinal5 = 3 - (notaFinal1 + notaFinal2 + notaFinal3 + notaFinal4);
+
+            if ( notaFinal5 <= 0){
+                return -1;
+            }
+
+            return (int)notaFinal5;
+
+
         } catch (Exception e) {
             return -1;
         }
-        return 0;
     }
 
     // Se requiere un algoritmo para calcular el salario a pagar a un trabajador con los siguientes datos ingresados por teclado: cantidad de horas normales laboradas cantidad de horas extras diurnas laboradas cantidad de horas extras nocturnas laboradas valor de la hora normal. El valor de las horas extras diurnas tienen un recargo adicional del 15% sobre la hora normal. El valor de las horas extras nocturnas tienen un recargo adicional del 35% sobre la hora normal.
     public static int calcularSalario(int horasNormales, int horasExtrasDiurnas, int horasExtrasNocturnas, double valorHoraNormal) {
         try {
-            // Lógica interna
+            
+            double salarioPagar = 0;
+            double valorHorasExtrasDiurnas = 0;
+            double valorTotalHorasExtrasDiurnas = 0;
+            double valorHorasExtrasNocturnas = 0;
+            double valorTotalHorasExtrasNocturnas = 0;
+            double valorTotalHorasNormales = 0;
+
+            valorHorasExtrasDiurnas = valorHoraNormal + (valorHoraNormal * 0.15);
+            valorHorasExtrasNocturnas = valorHoraNormal + (valorHoraNormal * 0.35);
+
+            valorTotalHorasExtrasDiurnas = horasExtrasDiurnas * valorHorasExtrasDiurnas;
+            valorTotalHorasExtrasNocturnas = horasExtrasNocturnas * valorHorasExtrasNocturnas;
+            valorTotalHorasNormales = horasNormales * valorHoraNormal;
+
+            salarioPagar = (int)valorTotalHorasNormales + (int)valorTotalHorasExtrasDiurnas + (int)valorTotalHorasExtrasNocturnas;
+
+            if (salarioPagar == 0){
+                return -1;
+            }
+            else {
+                return (int)salarioPagar;
+            }
+            
         } catch (Exception e) {
             return -1;
         }
-        return 0;
     }
 
     // Diseñe un algoritmo que calcule el área de un triángulo rectángulo.
     public static int calcularAreaTriangulo(double base, double altura) {
         try {
-            // Lógica interna
+            
+            double areaTriangulo = 0;
+
+            areaTriangulo = (base * altura)/2;
+
+            return (int)areaTriangulo;
+            
         } catch (Exception e) {
             return -1;
         }
-        return 0;
     }
 
     // Diseñe un algoritmo que calcule el perímetro de un cuadrado.
     public static int calcularPerimetroCuadrado(double lado) {
         try {
-            // Lógica interna
+            
+            double perimetroCuadrado = 0;
+
+            perimetroCuadrado = lado * 4;
+
+            return (int)perimetroCuadrado;
+
         } catch (Exception e) {
             return -1;
         }
-        return 0;
     }
 
     // Diseñe un algoritmo que calcule el volumen de un cilindro.
     public static int calcularVolumenCilindro(double radio, double altura) {
         try {
-            // Lógica interna
+            
+            double volumenCilindro = 0;
+            double radioala2 = radio * radio;
+            double pi = Math.PI;
+
+            volumenCilindro = radioala2 * pi * altura;
+
+            return (int)volumenCilindro;
+
         } catch (Exception e) {
             return -1;
         }
-        return 0;
     }
 
     // Diseñe un algoritmo que calcule el área del círculo. El radio se pide por teclado.
     public static int calcularAreaCirculo(double radio) {
         try {
-            // Lógica interna
+            
+            double areaCirculo = 0;
+            double pi = Math.PI;
+            double radioala2 = radio * radio;
+
+            areaCirculo = pi * radioala2;
+            return (int)areaCirculo;
+
         } catch (Exception e) {
             return -1;
         }
-        return 0;
     }
 
     public static void main(String[] args) {
-        
     }
 }
